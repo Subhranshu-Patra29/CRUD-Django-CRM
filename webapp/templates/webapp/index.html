@@ -1,0 +1,45 @@
+{% extends 'webapp/base.html' %}
+{% load static %} 
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Hero Section -->
+    <div class="text-center">
+        <h1 class="display-6 fw-semibold">CustomerCraft - Your Ultimate CRM Solution!</h1>
+        <p class="lead text-muted">Efficiently manage customer relations and drive business growth.</p>
+        <p class="lead text-muted">Enhance customer interactions and optimize business workflows with ease.</p>
+        <hr class="my-4">
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg me-3 shadow-sm" type="button">Continue to Dashboard</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-3 shadow-sm" type="button">Create Your Account</a>
+        {% endif %}
+    </div>
+
+    <!-- Features Section -->
+    <div class="row mt-5">
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/customer-management.jpg' %}" alt="Customer Management" class="img-fluid rounded-circle mb-3" width="150">
+            <h4 class="fw-semibold">Customer Management</h4>
+            <p class="text-muted">Easily store, update, and manage customer details in one place.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/analytics.jpg' %}" alt="Analytics & Reports" class="img-fluid rounded-circle mb-3" width="150">
+            <h4 class="fw-semibold">Analytics & Reports</h4>
+            <p class="text-muted">Track performance and gain insights to improve your business strategy.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/security.jpg' %}" alt="Data Security" class="img-fluid rounded-circle mb-3" width="150">
+            <h4 class="fw-semibold">Data Security</h4>
+            <p class="text-muted">Your data is securely stored with industry-standard encryption.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5 py-3 bg-dark text-white">
+    <p class="mb-0">&copy; 2025 CustomerCraft | All Rights Reserved.</p>
+</footer> 
+{% endblock %}

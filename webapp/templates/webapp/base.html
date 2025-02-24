@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM-Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/slate/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/simplex/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+</head>
+
+<body>
+    <!-- nav bar -->
+
+    {% include 'webapp/navbar.html' %}
+
+    <div class="container">
+        <br>
+        <!-- Notification Messages -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert 
+            {% if message.tags == 'success' %}alert-success
+            {% elif message.tags == 'error' %}alert-danger
+            {% elif message.tags == 'warning' %}alert-warning
+            {% else %}alert-info{% endif %}
+            alert-dismissible fade show message-alert" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- Auto-Dismiss Message Script -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(function () {
+                    let alerts = document.querySelectorAll(".message-alert");
+                    alerts.forEach(function (alert) {
+                        let fadeEffect = setInterval(function () {
+                            if (!alert.style.opacity) {
+                                alert.style.opacity = 1;
+                            }
+                            if (alert.style.opacity > 0) {
+                                alert.style.opacity -= 0.1;
+                            } else {
+                                clearInterval(fadeEffect);
+                                alert.remove();
+                            }
+                        }, 100);
+                    });
+                }, 5000); // Message disappears after 5 seconds
+            });
+        </script>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <!-- Chatbot Floating Button -->
+    <div id="chatbot-container">
+        <div id="chat-icon" onclick="toggleChat()">
+            <i class="fas fa-comment-alt"></i>
+        </div>
+        <div id="chat-window" class="hidden">
+            <div id="chat-header">
+                <h5>CRM Assistant</h5>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div id="chat-body"></div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="sendMessage(event)">
+                <button onclick="sendMessageManual()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
