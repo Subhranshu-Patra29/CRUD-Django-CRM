@@ -1,4 +1,4 @@
-## 📌 Django CRM with AI Chatbot
+## 📌 Django CRM with Chatbot
 
 A **Customer Relationship Management (CRM) System** built with **Django**, featuring **CRUD operations**, an **Chatbot** for seamless record management, and an intuitive **dashboard** with authentication & search functionality.
 
