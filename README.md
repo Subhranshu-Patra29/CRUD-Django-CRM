@@ -1,4 +1,4 @@
-![Screenshot 2025-02-24 151750](https://github.com/user-attachments/assets/a4730139-647a-4a72-adbe-554a65e60aa8)# 📌 Django CRM with AI Chatbot
+## 📌 Django CRM with AI Chatbot
 
 A **Customer Relationship Management (CRM) System** built with **Django**, featuring **CRUD operations**, an **Chatbot** for seamless record management, and an intuitive **dashboard** with authentication & search functionality.
 
